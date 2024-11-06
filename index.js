@@ -1,17 +1,15 @@
 const express = require("express");
 const cors = require("cors");
+const app = express();
 
 const connectDB = require("./src/config/db");
 connectDB();
-
-const app = express();
 app.use(express.json());
-app.use(cors());
-
-app.get("/", (req, res) => {
+app.use("/", (req, res) => {
   res.send("hello");
 });
 app.use("/api/auth", require("./src/routes/authRoutes"));
-
-// Export the app for Vercel serverless function
-module.exports = app;
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log("server is running");
+});
