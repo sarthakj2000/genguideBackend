@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
+
 const connectDB = require("./src/config/db");
 connectDB();
-const port = 5000;
 app.use(express.json());
 app.use("/api/auth", require("./src/routes/authRoutes"));
-app.listen(port, () => {
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
   console.log("server is running");
 });
