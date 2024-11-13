@@ -72,7 +72,7 @@ router.post(
         expiresIn: "1h",
       });
 
-      res.status(201).json({ token });
+      res.status(201).json({ token, userName: name, email: email });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Server error");
